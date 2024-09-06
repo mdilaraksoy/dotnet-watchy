@@ -1,1 +1,105 @@
-".vs" 
+# Ignore Visual Studio temporary files, build results, and
+# user-specific files.
+
+############################
+# ASP.NET Scaffolding
+############################
+ScaffoldingReadMe.txt
+
+############################
+# User-specific files
+############################
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+############################
+# User-specific files (Mono auto generated)
+############################
+mono_crash.*
+
+############################
+# Build results
+############################
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+
+# Uncomment if you have tasks that create the following file types
+# *.log
+*.tlog
+*.vspscc
+*.vssscc
+
+############################
+# Visual Studio 2019+
+############################
+.vscode/
+.vs/
+.vscode/settings.json
+
+############################
+# NuGet Packages
+############################
+*.nupkg
+# NuGet Symbol Packages
+*.snupkg
+# The packages folder can be ignored because of Package Restore
+**/packages/*
+# except build/, which is used as an MSBuild target.
+!**/packages/build/
+# Uncomment if necessary however generally it will be regenerated when needed
+# *.nuget.props
+# *.nuget.targets
+
+############################
+# Visual Studio Code
+############################
+.vscode/
+
+############################
+# Rider
+############################
+.idea/
+*.sln.iml
+.idea/*.sln.iml
+
+############################
+# DotNet
+############################
+*.swp
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+############################
+# Windows image file caches
+############################
+Thumbs.db
+ehthumbs.db
+
+############################
+# Folder config file
+############################
+Desktop.ini
+
+############################
+# Recycle Bin used on file shares
+############################
+$RECYCLE.BIN/
+
+############################
+# Windows shortcuts
+############################
+*.lnk
