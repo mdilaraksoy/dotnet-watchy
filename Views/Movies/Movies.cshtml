@@ -1,0 +1,442 @@
+﻿@using watchyproject.Utility
+@model IEnumerable<watchyproject.Models.MoviesModel>
+
+@{
+    ViewData["Title"] = "Movies";
+}
+
+<div class="header">
+    <h1>Movies</h1>
+    <div class="header-buttons">
+        <div class="genres-dropdown">
+            <button id="genreButton">Genres</button>
+            <div id="genresMenu" class="genres-menu">
+                <a href="#" data-genre="">All</a>
+                <a href="#" data-genre="Action">Action</a>
+                <a href="#" data-genre="Comedy">Comedy</a>
+                <a href="#" data-genre="Sci-Fi">Sci-Fi</a>
+                <a href="#" data-genre="Crime">Crime</a>
+                <a href="#" data-genre="Mystery">Mystery</a>
+                <a href="#" data-genre="Animation">Animation</a>
+                <a href="#" data-genre="Drama">Drama</a>
+                <a href="#" data-genre="Thriller">Thriller</a>
+                <!-- Add more genres as needed -->
+            </div>
+        </div>
+        @if (User.Identity.IsAuthenticated && !User.IsInRole(UserRoles.Role_User))
+        {
+            <div class="movie-actions">
+                <a href="@Url.Action("AddMovie", "Movies")" class="btn btn-primary">Add Movie</a>
+                @* <a href="@Url.Action("DeleteMovie", "Movies")" class="btn btn-primary">Delete Movie</a>  *@
+            </div>
+            
+        }
+
+    </div>
+</div>
+
+<table class="movies-table">
+    <tbody>
+        @foreach (var movie in Model.Select((value, index) => new { value, index }))
+        {
+            if (movie.index % 8 == 0)
+            {
+                <tr></tr>
+            }
+
+        <td align="center" valign="top" style="padding: 10px;" data-genre="@movie.value.Genre" data-id="@movie.value.Id">
+            <img src="~/img/@movie.value.PosterUrl" alt="Film Afişi" style="width: 100px; height: auto;" />
+            <div style="font-size: 14px; margin-top: 5px;">@movie.value.Title</div>
+            <div style="font-size: 12px; margin-top: 2px; color: gray;">@movie.value.Genre</div>
+            <div class="movie-description" style="display: none;">@movie.value.Description</div>
+
+        </td>
+
+            if (movie.index % 8 == 7)
+            {
+            <tr></tr>
+            }
+
+
+        }
+
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+
+        document.getElementById("genreButton").addEventListener("click", function () {
+            var menu = document.getElementById("genresMenu");
+            menu.style.display = menu.style.display === "block" ? "none" : "block";
+        });
+
+        document.querySelectorAll("#genresMenu a").forEach(function (link) {
+            link.addEventListener("click", function (e) {
+                e.preventDefault();
+                var selectedGenre = this.getAttribute("data-genre");
+                var movies = document.querySelectorAll(".movies-table td");
+                var container = document.querySelector(".movies-table tbody");
+
+                // Clear existing rows
+                container.innerHTML = "";
+
+                // Create a new row to start
+                var row = document.createElement("tr");
+                container.appendChild(row);
+
+                var count = 0;
+
+                movies.forEach(function (movie) {
+                    var movieGenre = movie.getAttribute("data-genre");
+
+                    if (selectedGenre === "" || movieGenre === selectedGenre) {
+                        movie.style.display = "table-cell";
+
+                        // Add movie to the current row
+                        row.appendChild(movie);
+
+                        count++;
+
+                        // Start a new row after 8 movies
+                        if (count % 8 === 0) {
+                            row = document.createElement("tr");
+                            container.appendChild(row);
+                        }
+                    } else {
+                        movie.style.display = "none";
+                    }
+                });
+
+                // Close the dropdown menu after selection
+                document.getElementById("genresMenu").style.display = "none";
+            });
+        });
+
+        document.addEventListener("click", function (e) {
+            var menu = document.getElementById("genresMenu");
+            if (!menu.contains(e.target) && e.target.id !== "genreButton") {
+                menu.style.display = "none";
+            }
+        });
+
+        
+
+        document.querySelectorAll(".movies-table td").forEach(function (movieElement) {
+            movieElement.addEventListener("click", function () {
+                // Tıklanan film bilgilerini al
+                var movieTitle = this.querySelector("div:nth-child(2)").innerText;
+                var movieGenre = this.querySelector("div:nth-child(3)").innerText;
+                var moviePosterUrl = this.querySelector("img").src;
+                var movieDescription = this.querySelector(".movie-description").innerText; // Description'ı al
+                var movieId = this.querySelector("data-movie-id"); // Filmin ID'sini al
+
+
+                // Modal içeriğini güncelle
+                document.getElementById("movieTitle").innerText = movieTitle;
+                document.getElementById("movieGenre").innerText = movieGenre;
+                document.getElementById("moviePoster").src = moviePosterUrl;
+                document.getElementById("movieDescription").innerText = movieDescription; // Description'ı modal içinde göster
+
+                // Modal'ı göster
+                var modal = document.getElementById("movieModal");
+                modal.style.display = "block";
+            });
+        });
+
+        // Modal dışında tıklanırsa modal'ı kapat
+        window.addEventListener("click", function (event) {
+            var modal = document.getElementById("movieModal");
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        });
+
+        // Delete Movie butonuna tıklama olayını yakalama
+        document.getElementById("deleteMovieButton").addEventListener("click", function () {
+            if (selectedMovieId) {
+                fetch(`@Url.Action("DeleteMovie", "Movies")?id=${movieId}`, {
+                    method: 'POST'
+                }).then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert("Film başarıyla silindi.");
+                            location.reload(); // Sayfayı yenile
+                        } else {
+                            alert("Film silinemedi.");
+                        }
+                    }).catch(error => console.error('Error:', error));
+            }
+        });
+
+
+
+    </script>
+}
+
+<!-- Modal Structure -->
+<div id="movieModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-body">
+            <img id="moviePoster" src="" alt="Movie Poster" class="modal-poster">
+            <div class="modal-details">
+                <h2 id="movieTitle">Movie Title</h2>
+                <p id="movieGenre" class="genres">Genre</p>
+                <div class="ratings">
+                    <div class="rating-item">
+                        <span class="rating-icon">❤️</span>
+                        <span class="rating-value">6.8</span>
+                        <span class="rating-label">Rating</span>
+                    </div>
+                    <div class="rating-item">
+                        <span class="rating-icon">🎯</span>
+                        <span class="rating-value">64</span>
+                        <span class="rating-label">Score</span>
+                    </div>
+                    <div class="rating-item">
+                        <span class="rating-icon">🏆</span>
+                        <span class="rating-value">12</span>
+                        <span class="rating-label">Awards</span>
+                    </div>
+                </div>
+                <p id="movieDescription" class="movie-description">
+                    <!-- Description burada gösterilecek -->
+                </p>
+                <div class="modal-buttons">
+                    <button class="btn watched">Watched</button>
+                    <button class="btn to-watchlist">To Watchlist</button>
+                    @if (User.Identity.IsAuthenticated && !User.IsInRole(UserRoles.Role_User))
+                    {
+                        <div class="movie-actions">
+                            <a href="@Url.Action("DeleteMovie", "Movies")" class="btn btn-primary">Delete Movie</a>
+                        </div>
+
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .header {
+        display: flex;
+        align-items: center;
+        gap: 50px;
+        margin-top: 100px;
+    }
+
+    .header-buttons {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .genres-dropdown {
+        position: relative;
+    }
+
+    #genreButton {
+        background-color: #000;
+        color: #fff;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+
+    .genres-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: #000;
+        color: #fff;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        z-index: 1;
+    }
+
+        .genres-menu a {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            padding: 5px 0;
+        }
+
+            .genres-menu a:hover {
+                background-color: #333;
+            }
+
+    .movie-actions .btn {
+        background-color: #6a0dad; /* Arka plan rengi */
+        border: none; /* Kenar çizgisi yok */
+        border-radius: 20px; /* Yuvarlatılmış köşeler */
+        color: #ffffff; /* Beyaz yazılar */
+        padding: 10px 20px; /* İç boşluk */
+        text-decoration: none; /* Alt çizgi yok */
+        font-size: 14px; /* Yazı boyutu */
+        cursor: pointer; /* İmleç işareti */
+        transition: background-color 0.3s ease; /* Hover efekti */
+    }
+
+    .movie-actions .btn-primary:hover,
+    .movie-actions .btn-danger:hover {
+        background-color: #5a0c9d; /* Hover durumu için daha koyu mor */
+    }
+
+    .movies-table {
+        width: 100%;
+        margin-top: 50px;
+        border-collapse: collapse;
+    }
+
+        .movies-table td {
+            width: 12.5%;
+            padding: 10px;
+            text-align: center;
+            vertical-align: top;
+        }
+
+        .movies-table img {
+            width: 100px;
+            height: auto;
+        }
+
+        .movies-table div {
+            margin-top: 5px;
+        }
+
+            .movies-table div:nth-child(2) {
+                font-size: 14px;
+            }
+
+            .movies-table div:nth-child(3) {
+                font-size: 12px;
+                color: gray;
+            }
+
+    <style >
+    /* Modal Structure */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.95); /* Black background */
+    }
+
+    /* Modal Content */
+    .modal-content {
+        background-color: #111111; /* Black background for modal */
+        margin: 5% auto;
+        padding: 20px;
+        border-radius: 10px;
+        width: 80%;
+        max-width: 900px;
+        display: flex;
+        flex-direction: column; /* Ensures content is stacked vertically */
+        position: relative;
+    }
+
+    /* Modal Body */
+    .modal-body {
+        display: flex;
+        gap: 20px;
+        color: #fff; /* White text color */
+        flex: 1; /* Allows body to take up remaining space */
+    }
+
+    .modal-poster {
+        width: 40%;
+        border-radius: 10px;
+    }
+
+    .modal-details {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+        .modal-details h2 {
+            margin-top: 0;
+        }
+
+    /* Modal Footer */
+    .modal-buttons {
+        display: flex;
+        gap: 10px;
+        margin-top: auto; /* Pushes the buttons to the bottom */
+    }
+
+    .genres {
+        color: #6a0dad; /* Purple for genre text */
+    }
+
+    .ratings {
+        display: flex;
+        gap: 20px;
+        margin: 10px 0;
+    }
+
+    .rating-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .rating-icon {
+        font-size: 24px;
+    }
+
+    .rating-value {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .rating-label {
+        font-size: 14px;
+        color: #ccc;
+    }
+
+
+    /* Modal Styling for Buttons */
+    .btn {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 20px; /* Ensure rounded corners */
+        cursor: pointer;
+    }
+
+    .watched {
+        background-color: #343a40; /* Dark background for watched button */
+        color: #fff;
+        font-size: 14px;
+    }
+
+    .to-watchlist {
+        background-color: #343a40; /* Dark background for to-watchlist button */
+        color: #fff;
+        font-size: 14px;
+    }
+
+    .delete-movie {
+        background-color: #dc3545; /* Red background for delete button */
+        color: #fff;
+    }
+
+        .delete-movie:hover {
+            background-color: #c82333; /* Darker red for hover state */
+        }
+
+
+</style>
+

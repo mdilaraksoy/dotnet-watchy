@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35122.118
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "watchyproject", "watchyproject.csproj", "{436D6C11-8DDA-48E1-9060-62353625F23D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{436D6C11-8DDA-48E1-9060-62353625F23D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{436D6C11-8DDA-48E1-9060-62353625F23D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{436D6C11-8DDA-48E1-9060-62353625F23D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{436D6C11-8DDA-48E1-9060-62353625F23D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {17964172-B6E1-4FFE-8402-4B74887B1098}
+	EndGlobalSection
+EndGlobal

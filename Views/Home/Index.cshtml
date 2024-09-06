@@ -1,0 +1,41 @@
+﻿ @model List<watchyproject.Models.TopMovs>
+
+@{
+    ViewData["Title"] = "Top Movies";
+    var userName = User.Identity.IsAuthenticated ? User.Identity.Name : "Guest";
+    var userRole = User.IsInRole("Admin") ? "Admin" : "User";
+}
+
+<div class="welcome-section">
+    <video autoplay muted loop class="background-video">
+        <source src="~/img/background.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="welcome-message">
+        <h1>Welcome @userName!</h1>
+    </div>
+</div>
+
+<div class="container">
+    <div class="top-10-section">
+        <div class="top-10-title">Top 10 Movies</div>
+        <div class="top-10-movies">
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var movs in Model)
+                {
+                    <div class="movie-poster">
+                        <img src="@movs.poster" alt="Movie Poster" /> 
+                        <div class="movie-title">@movs.title</div>
+                        <div class="movie-rating">Rating: @movs.rating</div>
+                    </div>
+                }
+            }
+            else
+            {
+                <p>No movies available.</p>
+            }
+        </div>
+    </div>
+</div>
+ 

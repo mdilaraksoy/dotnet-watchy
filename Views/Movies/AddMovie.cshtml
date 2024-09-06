@@ -1,0 +1,85 @@
+﻿@model watchyproject.Models.MoviesModel
+
+@{
+    ViewData["Title"] = "Add Movie";
+}
+
+<div class="header">
+    <h1>Add Movie</h1>
+    <div class="header-buttons">
+        <a href="@Url.Action("Index", "Movies")" class="btn btn-secondary">Back to Movies</a>
+    </div>
+</div>
+
+<form asp-action="AddMovie" asp-controller="Movies" method="post" enctype="multipart/form-data" class="movie-form">
+    <div class="form-group">
+        <label for="Title">Movie Title</label>
+        <input type="text" class="form-control" id="Title" name="Title" required />
+    </div>
+    <div class="form-group">
+        <label for="Genre">Genre</label>
+        <input type="text" class="form-control" id="Genre" name="Genre" required />
+    </div>
+    <div class="form-group">
+        <label for="PosterUrl">Movie Poster</label>
+        <input type="text" class="form-control" id="PosterUrl" name="PosterUrl"  required />
+    </div>
+    <div>
+        <label for="Description">Description:</label>
+        <textarea id="Description" name="Description"></textarea>  <!-- Yeni Description alanı -->
+    </div>
+    <button type="submit" class="btn btn-primary">Add Movie</button>
+</form>
+
+@section Scripts {
+    <script>
+        // Custom JavaScript can be added here if needed
+    </script>
+}
+
+<style>
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 100px;
+    }
+
+    .header-buttons {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .movie-form {
+        margin-top: 50px;
+        max-width: 600px;
+        margin-left: 0px;
+        margin-right: auto;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+        border-radius: 15px;
+    }
+
+    .form-control {
+        padding: 5px;
+        font-size: 14px;
+        width: 100%;
+        border-radius: 15px;
+    }
+
+    .btn {
+        padding: 6px 15px;
+        font-size: 14px;
+        border-radius: 20px; 
+        gap: 5px;
+    }
+
+    .btn-primary {
+        background-color: #6a0dad; /* Mor renk */
+        border: none;
+        margin-top: 5px; /* 3px aşağıya almak için */
+    }
+</style>

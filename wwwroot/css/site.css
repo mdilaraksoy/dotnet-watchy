@@ -1,0 +1,259 @@
+html {
+    font-size: 14px;
+    <link href="https://fonts.googleapis.com/css2?family=Sharp+Sans+No+1:wght@500&display=swap" rel="stylesheet">
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+
+body {
+    background-color: #000000; /* Siyah arka plan */
+    color: #ffffff; /* Beyaz yazýlar */
+    margin-bottom: 60px;
+    position: relative;
+    min-height: 100%;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #6a0d91; /* Mürdüm moru */
+    font-family: 'Arial', sans-serif; /* Navbar fontu */
+}
+
+    .navbar .nav-link {
+        color: #ffffff; /* Beyaz yazýlar */
+    }
+
+    .navbar .btn-login {
+        background-color: #6a0dad; /* Açýk gri */
+        border-radius: 20px; /* Yuvarlatýlmýþ köþeler */
+        color: black; /* Siyah yazýlar */
+        padding: 10px 20px; /* Ýç boþluk */
+        text-decoration: none; /* Alt çizgi yok */
+        transition: background-color 0.3s ease; /* Hover efekti */
+    }
+
+        .navbar .btn-login:hover {
+            background-color: #5a0a9e; /* Hover durumu için daha koyu gri */
+        }
+
+/* Navbar brand */
+.navbar-brand {
+    font-size: 1.5rem; /* Yazý boyutunu büyütür */
+}
+
+/* Arama çubuðu ve buton */
+.form-control {
+    border-radius: 20px 0 0 20px; /* Sadece sol köþeler yuvarlatýldý */
+    padding-right: 50px; /* Ýç boþluk, büyüteç simgesi için geniþletildi */
+}
+
+.input-group {
+    width: 300px; /* Arama çubuðunun geniþliði */
+}
+
+.input-group-text {
+    background-color: #d3d3d3; /* Açýk gri arka plan */
+    border: 1px solid #ccc; /* Kenar rengi */
+    border-radius: 0 20px 20px 0; /* Sadece sað köþeler yuvarlatýldý */
+    cursor: pointer; /* Ýmleç iþareti */
+}
+
+    .input-group-text i {
+        color: #000000; /* Siyah simge rengi */
+    }
+
+/* Arama formunun hizalanmasý */
+.navbar .navbar-collapse {
+    display: flex;
+    justify-content: space-between; /* Arama formunu ortalar */
+    align-items: center;
+}
+
+.navbar .navbar-nav {
+    margin-left: auto;
+}
+
+.navbar-nav .nav-item {
+    margin-right: 15px;
+}
+
+/* Genel buton stili */
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+.login-container {
+    background-color: #000000; /* Siyah arka plan */
+    color: #ffffff; /* Beyaz yazýlar */
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 70vh; /* Ekran yüksekliðine göre ortalama */
+}
+
+    .login-container h2 {
+        margin-bottom: 100px; /* Baþlýk ile form arasýnda boþluk */
+    }
+
+    .login-container .form-group {
+        width: 100%;
+    }
+
+    .login-container .form-control {
+        background-color: #333333; /* Koyu gri arka plan */
+        color: #ffffff; /* Beyaz yazýlar */
+        border: none; /* Kenar çizgisi yok */
+        border-radius: 20px; /* Yuvarlatýlmýþ köþeler */
+    }
+
+        .login-container .form-control::placeholder {
+            color: #dddddd; /* Placeholder rengi */
+        }
+
+    .login-container .btn-container {
+        width: 100%;
+        text-align: center; /* Butonu ortalamak için */
+    }
+
+    .login-container .btn-primary {
+        background-color: #6a0d91; /* Koyu mor arka plan */
+        border: none; /* Kenar çizgisi yok */
+        border-radius: 30px; /* Yuvarlatýlmýþ köþeler */
+        padding: 5px 20px; /* Ýç boþluk */
+        font-size: 0.875rem; /* Küçük yazý */
+        width: auto; /* Buton geniþliðini küçült */
+        margin-top: 20px; /* Buton ile form elementleri arasýna boþluk */
+        display: inline-block;
+    }
+
+        .login-container .btn-primary:hover {
+            background-color: #55087a; /* Hover için daha koyu mürdüm moru */
+        }
+
+    .login-container .text-center a {
+        color: #ffffff; /* Beyaz link rengi */
+    }
+
+.form-control-sm {
+    font-size: 0.875rem;
+}
+
+.btn-sm {
+    font-size: 0.875rem;
+    padding: 5px 10px;
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.ms-3 {
+    margin-left: 1rem;
+}
+
+/* Welcome Section */
+.welcome-section {
+    position: relative;
+    width: 100%;
+    height: 50vh; /* Yüksekliði ekranýn yarýsý kadar */
+    overflow: hidden; /* Video taþmasýný engeller */
+    color: #fff; /* Yazý rengi beyaz */
+    text-align: center;
+    font-size: 24px; /* Yazý boyutu */
+}
+
+/* Video arka plan */
+.background-video {
+    position: absolute; /* Videoyu tam arka plan olarak yerleþtirir */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Videoyu kapsayýcýya göre keser */
+    z-index: -1; /* Videoyu diðer içeriklerin arkasýna yerleþtirir */
+}
+
+/* Ýçerik kutusu */
+.welcome-message {
+    background-color: transparent;
+    padding: 20px;
+    border-radius: 10px;
+    position: absolute;
+    bottom: 20px; /* Videonun alt kýsmýna yerleþtirir */
+    left: 50%;
+    transform: translateX(-50%); /* Ortalar */
+    z-index: 1; /* Ýçeriði videonun üstüne yerleþtirir */
+    font-family: 'Sharp Sans No. 1 Medium', sans-serif; /* Yeni fontu uygular */
+}
+
+/* Top 10 Film Afiþleri */
+.top-10-section {
+    margin-top: 20px;
+}
+
+.top-10-title {
+    font-size: 32px; /* Larger size for the Top 10 heading */
+    font-weight: bold;
+    margin-bottom: 50px;
+    margin-top: 100px;
+    gap: 50px;
+    font-family: 'Arial', sans-serif; /* Navbar fontu ile uyumlu */
+}
+
+.top-10-movies {
+    display: flex;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    gap: 25px;
+    scroll-snap-type: x mandatory; /* Ensures smooth scrolling */
+}
+
+    .top-10-movies::-webkit-scrollbar {
+        height: 10px;
+    }
+
+    .top-10-movies::-webkit-scrollbar-thumb {
+        background: #6a0d91; /* Scrollbar color */
+        border-radius: 10px;
+    }
+
+.movie-poster {
+    flex: 0 0 auto;
+    width: 150px;
+    margin-right: 10px;
+    text-align: center;
+    gap: 50px;
+    scroll-snap-align: start; /* Aligns the posters to the start of the container */
+}
+
+    .movie-poster img {
+        width: 100%;
+        border-radius: 10px;
+    }
+
+.movie-title {
+    margin-top: 5px;
+    font-size: 17px; /* Larger font size for movie titles */
+    font-weight: bold; /* Makes the movie titles bold */
+    font-family: 'Arial', sans-serif; /* Navbar fontu ile uyumlu */
+}
+
+.movie-rating {
+    font-size: 12px; /* Smaller font size for movie ratings */
+}

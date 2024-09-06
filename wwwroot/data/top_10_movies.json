@@ -1,0 +1,52 @@
+[
+    {
+        "title": "1. The Shawshank Redemption",
+        "rating": "9.3",
+        "poster": "https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_QL75_UX140_CR0,1,140,207_.jpg"
+    },
+    {
+        "title": "2. The Godfather",
+        "rating": "9.2",
+        "poster": "https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_QL75_UY207_CR3,0,140,207_.jpg"
+    },
+    {
+        "title": "3. The Dark Knight",
+        "rating": "9.0",
+        "poster": "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_QL75_UX140_CR0,0,140,207_.jpg"
+    },
+    {
+        "title": "4. The Godfather Part II",
+        "rating": "9.0",
+        "poster": "https://m.media-amazon.com/images/M/MV5BMWMwMGQzZTItY2JlNC00OWZiLWIyMDctNDk2ZDQ2YjRjMWQ0XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_QL75_UY207_CR3,0,140,207_.jpg"
+    },
+    {
+        "title": "5. 12 Angry Men",
+        "rating": "9.0",
+        "poster": "https://m.media-amazon.com/images/M/MV5BMWU4N2FjNzYtNTVkNC00NzQ0LTg0MjAtYTJlMjFhNGUxZDFmXkEyXkFqcGdeQXVyNjc1NTYyMjg@._V1_QL75_UX140_CR0,4,140,207_.jpg"
+    },
+    {
+        "title": "6. Schindler's List",
+        "rating": "9.0",
+        "poster": "https://m.media-amazon.com/images/M/MV5BNDE4OTMxMTctNmRhYy00NWE2LTg3YzItYTk3M2UwOTU5Njg4XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_QL75_UX140_CR0,1,140,207_.jpg"
+    },
+    {
+        "title": "7. The Lord of the Rings: The Return of the King",
+        "rating": "9.0",
+        "poster": "https://m.media-amazon.com/images/M/MV5BNzA5ZDNlZWMtM2NhNS00NDJjLTk4NDItYTRmY2EwMWZlMTY3XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_QL75_UX140_CR0,0,140,207_.jpg"
+    },
+    {
+        "title": "8. Pulp Fiction",
+        "rating": "8.9",
+        "poster": "https://m.media-amazon.com/images/M/MV5BNGNhMDIzZTUtNTBlZi00MTRlLWFjM2ItYzViMjE3YzI5MjljXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_QL75_UY207_CR1,0,140,207_.jpg"
+    },
+    {
+        "title": "9. The Lord of the Rings: The Fellowship of the Ring",
+        "rating": "8.9",
+        "poster": "https://m.media-amazon.com/images/M/MV5BZTQzNWU5ZDAtNDhlMC00MTcyLThjNjctZDgxMDg2MTBjMDgwXkEyXkFqcGdeQXVyMjI0NTA4NzA@._V1_QL75_UY207_CR2,0,140,207_.jpg"
+    },
+    {
+        "title": "10. Il buono, il brutto, il cattivo",
+        "rating": "8.8",
+        "poster": "https://m.media-amazon.com/images/M/MV5BMmU5N2YwNzgtMmMwMy00YjIxLWI1MzctNmYxMGE4Y2ZiNDhmXkEyXkFqcGdeQXVyMjI0NTA4NzA@._V1_QL75_UY207_CR1,0,140,207_.jpg"
+    }
+]
